@@ -10,8 +10,8 @@ export const Home = () => {
     <>
         <View style={[s.mt5]}>
             <Buttons
-            title='Caso 1'
-            url='/home'
+            title='Questions Drink'
+            url='roulette'
             />
 
             <Buttons

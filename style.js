@@ -6,6 +6,14 @@ var {  StyleSheet } = React;
 
 module.exports = StyleSheet.create({ 
 
+    // FONT FAMILY 
+    fontFamily1:{
+        fontFamily: 'ClimateCrisisRegular'
+    },
+    fontFamily2:{
+        fontFamily: 'LibreBaskervilleRegular'
+    },
+
     fontSize11: {
      fontSize: 11
     },
@@ -47,6 +55,9 @@ module.exports = StyleSheet.create({
     },
     fontSize32: {
      fontSize: 32
+    },
+    fontSize40: {
+        fontSize: 40
     },
 
     fontWeightBold: {fontWeight: "bold"},
@@ -99,30 +110,30 @@ module.exports = StyleSheet.create({
     },
 
     Color_primary:{
-        color: '#362FD9',
+        color: '#D61355',
     },
     Color_secondary:{
-        color: '#227C70',
+        color: '#F94A29',
     },
     Color_tertiary:{
-        color: '#88A47C',
+        color: '#FCE22A',
     },
     Color_quarternary:{
-        color: '#E6E2C3',
+        color: '#30E3DF',
     },
 
     // backgroundColor
     bg_primary:{
-        backgroundColor: '#362FD9',
+        backgroundColor: '#F0EEED',
     },
     bg_secondary:{
-        backgroundColor: '#227C70',
+        backgroundColor: '#609EA2',
     },
     bg_tertiary:{
-        backgroundColor: '#88A47C',
+        backgroundColor: '#C92C6D',
     },
     bg_quarternary:{
-        backgroundColor: '#ECF2FF',
+        backgroundColor: '#332C39',
     },
 
     //padding 
