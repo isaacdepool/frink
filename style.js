@@ -116,7 +116,7 @@ module.exports = StyleSheet.create({
         color: '#F94A29',
     },
     Color_tertiary:{
-        color: '#FCE22A',
+        color: '#C92C6D',
     },
     Color_quarternary:{
         color: '#30E3DF',
@@ -133,7 +133,10 @@ module.exports = StyleSheet.create({
         backgroundColor: '#C92C6D',
     },
     bg_quarternary:{
-        backgroundColor: '#332C39',
+        backgroundColor: '#30E3DF',
+    },
+    bg_extra:{
+        backgroundColor: '#F94A29',
     },
 
     //padding 

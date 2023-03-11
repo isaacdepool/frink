@@ -52,7 +52,7 @@ export default function App() {
 
   return (
     <>
-    <StatusBar style="light" 
+    <StatusBar style="dark" 
     />
     {/* <Header/> */}
       <NavigationContainer>
@@ -66,7 +66,13 @@ export default function App() {
             <Stack.Screen 
             name="roulette" 
             component={RouletteScreen}
-            options={{headerShown: false, unmountOnBlur:true}}
+            options={{
+              headerShown: false,
+              unmountOnBlur:true,
+              presentation: 'modal',
+              animationTypeForReplace: 'push',
+              animation:'slide_from_right'
+            }}
             // initialParams={{setNavBarShow, completeForm, setCompleteForm}}
             />
           </Stack.Navigator>

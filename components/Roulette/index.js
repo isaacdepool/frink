@@ -4,7 +4,8 @@ import { Roulette } from './Roulette'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import useStateRef from 'react-usestateref';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Text } from 'react-native';
+import { View } from 'react-native';
 
 var s = require('../../style');
 

@@ -7,28 +7,48 @@ import useStateRef from 'react-usestateref';
 
 var s = require('../../../style');
 
-export const Buttons = ({title='Hola', url}) => {
+export const Buttons = ({
+    title='Hola', 
+    url, bgcolor=s.bg_primary, 
+    color=s.colorWhite,
+    Icon
+}) => {
 
     const navigation = useNavigation();
     const [touchIn, setTouchIn, touchInRef] = useStateRef(false);
   return (
     <>
-        <TouchableOpacity style={[styles.box, s.mx3, s.my1, s.bg_primary, s.contenedorCenter, touchInRef.current&& styles.btn_hover]}
+        <TouchableOpacity style={[styles.box, bgcolor, s.mx3, s.my1, s.contenedorCenter, touchInRef.current&& styles.btn_hover]}
         onPress={() => navigation.navigate(url)}
         onPressIn={() => setTouchIn(!touchInRef.current)}
         onPressOut={() => setTouchIn(!touchInRef.current)}
         >
-            <Text style={[s.fontSize32, s.colorWhite]}>{title}</Text>
+            <Icon 
+            width= '90%'
+            height='90%'
+            style={[styles.icon]}
+            />
+            <Text style={[s.fontSize32, s.textCenter, color, s.fontFamily1, styles.text]}>{title}</Text>
         </TouchableOpacity>
     </>
   )
 }
 const styles = StyleSheet.create({
+    text:{letterSpacing: 4, textShadowColor:'#000', 
+    textShadowOffset:{width: 5, height: 5},
+    textShadowRadius:10},
     box:{
         height: 200,
         borderRadius: 10
     },
     btn_hover:{
         backgroundColor: '#537FE7'
-    }
+    },
+    icon:{
+        position: 'absolute',
+        bottom: 0,
+        transform: [{ rotate: '20deg'}],
+        left: '-20%',
+        zIndex: -99
+    },
 });
