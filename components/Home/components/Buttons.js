@@ -16,7 +16,8 @@ export const Buttons = ({
     idQuestions,
     numberOfUsers,
     refRBSheet,
-    showModal
+    showModal,
+    setGoTo
 }) => {
 
     const navigation = useNavigation();
@@ -26,6 +27,7 @@ export const Buttons = ({
 
         if(numberOfUsers < 2){
             showModal.current.content.warningsFriends();
+            setGoTo(1);
         }else{
             const dataCache = {
                 idQuestions: idQuestions,
@@ -55,12 +57,16 @@ export const Buttons = ({
   )
 }
 const styles = StyleSheet.create({
-    text:{letterSpacing: 4, textShadowColor:'#000', 
-    textShadowOffset:{width: 5, height: 5},
-    textShadowRadius:10},
+    text:{
+        letterSpacing: 4, 
+        textShadowColor:'#000', 
+        textShadowOffset:{width: 5, height: 5},
+        textShadowRadius:10,
+    },
     box:{
         height: 200,
-        borderRadius: 10
+        borderRadius: 10,
+        blurRadius:5
     },
     btn_hover:{
         backgroundColor: '#537FE7'

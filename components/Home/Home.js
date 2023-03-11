@@ -7,7 +7,7 @@ import ShotIcon from '../../assets/icons/shot.svg';
 
 var s = require('../../style');
 
-export const Home = ({numberOfUsers, refRBSheet, showModal}) => {
+export const Home = ({numberOfUsers, refRBSheet, showModal, setGoTo}) => {
 
   return (
     <>
@@ -22,6 +22,7 @@ export const Home = ({numberOfUsers, refRBSheet, showModal}) => {
             numberOfUsers={numberOfUsers}
             refRBSheet={refRBSheet}
             showModal={showModal}
+            setGoTo={setGoTo}
             />
 
             <Buttons
@@ -34,10 +35,11 @@ export const Home = ({numberOfUsers, refRBSheet, showModal}) => {
             numberOfUsers={numberOfUsers}
             refRBSheet={refRBSheet}
             showModal={showModal}
+            setGoTo={setGoTo}
             />
 
             <Buttons
-            title='Hot Shot'
+            title='Hot Shot 🔥'
             url='roulette'
             color={[s.colorRed]}
             Icon={ShotIcon}
@@ -45,6 +47,7 @@ export const Home = ({numberOfUsers, refRBSheet, showModal}) => {
             numberOfUsers={numberOfUsers}
             refRBSheet={refRBSheet}
             showModal={showModal}
+            setGoTo={setGoTo}
             />
         </View>
     </>

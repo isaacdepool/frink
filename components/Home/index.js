@@ -31,6 +31,7 @@ export const HomeScreen = ({}) => {
 
   const showModal = useRef();
   const [numberOfUsers, setnumberOfUsers, numberOfUsersRef] = useStateRef(0);
+  const [goTo, setGoTo, goToRef] = useStateRef(0);
 
   //Animation Burbu
   const initialValue = 0;
@@ -71,12 +72,23 @@ export const HomeScreen = ({}) => {
   }, []); //Get Users
 
   const handleAcceptAction = () =>{
-    showModal.current.resetModal();
     
-    setTimeout(() => {
-      
-      refRBSheet.current.open();
-    }, 100);
+    switch (goToRef.current) {
+      case 1:
+        setTimeout(() => {
+          
+          refRBSheet.current.open();
+        }, 100);
+        showModal.current.resetModal();
+        break;
+      case 2:
+        showModal.current.resetModal();
+        break;
+    
+      default:
+        break;
+    }
+
   }
 
   return (
@@ -107,6 +119,7 @@ export const HomeScreen = ({}) => {
         >
             <Home
               showModal={showModal}
+              setGoTo={setGoTo}
               numberOfUsers={numberOfUsersRef.current}
               refRBSheet={refRBSheet}
             />
@@ -121,7 +134,6 @@ export const HomeScreen = ({}) => {
         
 
         {/* bottom sheet  */}
-        <View>
           <RBSheet
             ref={refRBSheet}
             closeOnDragDown={true}
@@ -139,9 +151,10 @@ export const HomeScreen = ({}) => {
           >
             <AddUsers
               setnumberOfUsers={setnumberOfUsers}
+              showModal={showModal}
+              setGoTo={setGoTo}
             />
           </RBSheet>
-        </View>
       </View>
     </>
 
@@ -156,6 +169,14 @@ const styles = StyleSheet.create({
       height: 70,
       width: 70,
       borderRadius: 100,
+      shadowColor: "#000",
+      shadowOffset: {
+        width: 0,
+        height: 12,
+      },
+      shadowOpacity: 0.58,
+      shadowRadius: 16.00,
+      elevation: 24,
   },
   background: {
     position: 'absolute',

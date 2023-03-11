@@ -42,6 +42,18 @@ export const ModalHook = forwardRef((props, ref) => {
             })
         }, 
 
+        //Error, name is the same 
+        errorName: (actionGoTo=null) => {
+            setModal({
+                title:'The name has been fixed!',
+                subtitle:'Please add a different name.',
+                isSubtitle:true,
+                isInfo:true,
+                isSuccess:false,
+                isCancel:false,
+                show: true,
+            })
+        }, 
     }
 
     //con esto redireccionamos todo

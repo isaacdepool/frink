@@ -21,8 +21,9 @@ export const Modals = ({
     <Modal
     visible={show}
     transparent={true}
+    animationType={'fade'}
     >
-        <View style={[s.contenedorCenter]}>
+        <View style={[s.contenedorCenter, {backgroundColor: 'rgba(0, 0, 0, 0.2)'}]}>
             <View style={[s.bgFFF, s.w80, styles.box, s.p5]}>
                     {
                         isInfo
@@ -71,7 +72,6 @@ const styles = StyleSheet.create({
         },
         shadowOpacity: 0.25,
         shadowRadius: 3.84,
-
         elevation: 5,
     },
     icon:{

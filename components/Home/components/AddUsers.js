@@ -9,7 +9,7 @@ import CheckIcon from '../../../assets/icons/Icon-check.svg';
 
 var s = require('../../../style');
 
-export const AddUsers = ({setnumberOfUsers}) => {
+export const AddUsers = ({setnumberOfUsers, showModal,setGoTo}) => {
 
     const [name, setName, nameRef] = useStateRef(''); // Value to input
     const [list, setList, listRef] = useStateRef([]); // List of user
@@ -35,6 +35,17 @@ export const AddUsers = ({setnumberOfUsers}) => {
 
     // Add user to List 
     const addFriend = () =>{
+
+        // validate user 
+        if(nameRef.current.trim() == ''){
+            return
+        }
+
+        if(listRef.current.filter(e => e.name.toLowerCase() == nameRef.current.toLowerCase()).length > 0){
+            showModal.current.content.errorName();
+            setGoTo(2);
+            return
+        }
 
         // ADD User 
         let copyData = listRef.current;
