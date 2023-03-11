@@ -30,11 +30,16 @@ export default function App() {
       title: 'Never have i ever',
       items: jsonData.never
     },
+    {
+      id: 3,
+      title: 'Hot shot',
+      items: jsonData.hot
+    },
   ]
 
   useEffect(() => {
 
-    // AsyncStorage.removeItem('questions');
+    AsyncStorage.removeItem('questions');
 
     AsyncStorage.getItem('questions').then(response => {
 

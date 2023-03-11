@@ -41,6 +41,7 @@ export const Home = ({numberOfUsers, refRBSheet, showModal, setGoTo}) => {
             <Buttons
             title='Hot Shot 🔥'
             url='roulette'
+            bgcolor={[s.bg_extra]}
             color={[s.colorRed]}
             Icon={ShotIcon}
             idQuestions={3}
