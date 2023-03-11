@@ -13,7 +13,7 @@ export const RouletteScreen = ({route}) => {
 
   const [dataQuestions, setDataQuestions, dataQuestionsRef] = useStateRef(null);
   const [dataUsers, setDataUsers, dataUsersRef] = useStateRef(null);
-  const [icons, setIcons, iconsRef] = useStateRef(null);
+  const [icon, setIcon, iconRef] = useStateRef(null);
   const [bg_color, setBg_color, bg_colorRef] = useStateRef(null);
   const [title_color, setTitle_color, title_colorRef] = useStateRef(null);
 
@@ -43,6 +43,7 @@ export const RouletteScreen = ({route}) => {
 
   useEffect(() => {
     if(routeParams){
+      setIcon(routeParams.Icon);
       setBg_color(routeParams.bg_color);
       setTitle_color(routeParams.title_color)
     }

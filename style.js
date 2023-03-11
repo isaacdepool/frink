@@ -138,6 +138,9 @@ module.exports = StyleSheet.create({
     bg_extra:{
         backgroundColor: '#F94A29',
     },
+    bgFFF:{
+        backgroundColor: '#FFF',
+    },
 
     //padding 
     p0 : {padding : 0},

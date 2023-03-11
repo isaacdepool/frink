@@ -9,7 +9,7 @@ import CheckIcon from '../../../assets/icons/Icon-check.svg';
 
 var s = require('../../../style');
 
-export const AddUsers = () => {
+export const AddUsers = ({setnumberOfUsers}) => {
 
     const [name, setName, nameRef] = useStateRef(''); // Value to input
     const [list, setList, listRef] = useStateRef([]); // List of user
@@ -52,6 +52,7 @@ export const AddUsers = () => {
     // Save user on storage
     const saveUsers = () =>{
 
+        setnumberOfUsers(listRef.current.length);
         AsyncStorage.setItem('users', JSON.stringify(listRef.current)).then().catch(error =>  console.log(error , "error users"));
 
     }
@@ -81,7 +82,7 @@ export const AddUsers = () => {
   return (
     <>
         <View style={[s.contenedorFlexSpaceBetween, s.mx3]}>
-            <Text style={[s.fontSize18, s.fontFamily2, s.ColorPurple]}>ADD FRIEND</Text>
+            <Text style={[s.fontSize18, s.fontFamily2, s.colorGrey]}>ADD FRIEND</Text>
 
             {/* Delete users  */}
             <TouchableOpacity onPress={hadleDeleteAll}>
@@ -124,14 +125,16 @@ export const AddUsers = () => {
                         listRef.current.length > 0&&
                         listRef.current.map((item, i) =>(
 
-                            <View style={[s.contenedorFlexSpaceBetween]}>
+                            <View style={[s.contenedorFlexSpaceBetween]}
+                            key={i}
+                            >
                                 <View style={[s.mt3, s.contenedorFlex]}
                                 key={i}
                                 >
                                     <View style={[styles.avatar, s.bg_quarternary, s.mr2]}>
                                         <Text style={[s.Color_primary, s.fontSize18]}>{listRef.current.length - (i)}</Text>
                                     </View>
-                                    <Text>{item.name}</Text>
+                                    <Text style={[s.fontSize16, s.Color_primary]}>{item.name}</Text>
                                 </View>
 
                                 <TouchableOpacity style={[s.p2]}

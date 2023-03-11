@@ -7,6 +7,7 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import { AddUsers } from './components/AddUsers';
 import { Header } from '../General/Header';
 import { Dimensions } from 'react-native';
+import { Modals } from '../General/Modals';
 
 import { Animated, Easing, ImageBackground } from 'react-native';
 
@@ -19,11 +20,18 @@ import {
   ANIMATION_TO_VALUE,
   ANIMATION_DURATION,
 } from '../utils/constants';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import useStateRef from 'react-usestateref';
+import { ModalHook } from '../hooks/ModalHook';
 
 
 var s = require('../../style');
 
-export const HomeScreen = () => {
+export const HomeScreen = ({}) => {
+
+  const showModal = useRef();
+  const [numberOfUsers, setnumberOfUsers, numberOfUsersRef] = useStateRef(0);
+
   //Animation Burbu
   const initialValue = 0;
   const translateValue = useRef(new Animated.Value(initialValue)).current;
@@ -50,54 +58,93 @@ export const HomeScreen = () => {
   const AnimetedImage = Animated.createAnimatedComponent(ImageBackground);
 
   const refRBSheet = useRef();
-  return (
-    <View style={[{backgroundColor: '#E7B10A', minHeight: Dimensions.get('window').height + 50}]}>
-      <AnimetedImage 
-            resizeMode="repeat" 
-            style={[styles.background,{
-                transform: [
-                    {
-                      translateX: 0,
-                    },
-                    {
-                      translateY: translateAnimation,
-                    },
-                  ],
-            }]}
-            source={backgroundImage} />
-      <Header/>
-      <KeyboardAwareScrollView
-      style={[{backgroundColor: 'transparent'}]}
-      >
-          <Home/>
-      </KeyboardAwareScrollView>
 
-      <TouchableOpacity style={[styles.btn, s.contenedorCenter, s.bg_quarternary]}
-        onPress={() => refRBSheet.current.open()}
-      >
-            <Text style={[s.fontSize30, s.colorWhite, s.fontWeightBold]}>+</Text>
-      </TouchableOpacity>
+  useEffect(() => {
+
+    AsyncStorage.getItem('users').then(response => {
+
+      if(response  != null) {  
+        const data = JSON.parse(response);
+        setnumberOfUsers(data.length);
+      }  
+    });
+  }, []); //Get Users
+
+  const handleAcceptAction = () =>{
+    showModal.current.resetModal();
+    
+    setTimeout(() => {
       
-      <View>
-        <RBSheet
-          ref={refRBSheet}
-          closeOnDragDown={true}
-          dragFromTopOnly={true}
-          closeOnPressMask={true}
-          keyboardAvoidingViewEnabled={true}
-          customStyles={{
-            wrapper: {
-              backgroundColor: "transparent"
-            },
-            draggableIcon: {
-              backgroundColor: "#000"
-            }
-          }}
+      refRBSheet.current.open();
+    }, 100);
+  }
+
+  return (
+    <>
+      <ModalHook
+      ref={showModal}
+      acceptAction={handleAcceptAction}
+      />
+
+      <View style={[{backgroundColor: '#E7B10A', minHeight: Dimensions.get('window').height + 50}]}>
+        <AnimetedImage 
+          resizeMode="repeat" 
+          style={[styles.background,{
+              transform: [
+                  {
+                    translateX: 0,
+                  },
+                  {
+                    translateY: translateAnimation,
+                  },
+                ],
+          }]}
+          source={backgroundImage} />
+        <Header/>
+
+        <KeyboardAwareScrollView
+        style={[{backgroundColor: 'transparent'}]}
         >
-          <AddUsers/>
-        </RBSheet>
+            <Home
+              showModal={showModal}
+              numberOfUsers={numberOfUsersRef.current}
+              refRBSheet={refRBSheet}
+            />
+        </KeyboardAwareScrollView>
+
+        {/* Button add users to open bottom-sheet */}
+        <TouchableOpacity style={[styles.btn, s.contenedorCenter, s.bg_quarternary]}
+          onPress={() => refRBSheet.current.open()}
+        >
+              <Text style={[s.fontSize30, s.colorWhite, s.fontWeightBold]}>+</Text>
+        </TouchableOpacity>
+        
+
+        {/* bottom sheet  */}
+        <View>
+          <RBSheet
+            ref={refRBSheet}
+            closeOnDragDown={true}
+            dragFromTopOnly={true}
+            closeOnPressMask={true}
+            keyboardAvoidingViewEnabled={true}
+            customStyles={{
+              wrapper: {
+                backgroundColor: "transparent"
+              },
+              draggableIcon: {
+                backgroundColor: "#000"
+              }
+            }}
+          >
+            <AddUsers
+              setnumberOfUsers={setnumberOfUsers}
+            />
+          </RBSheet>
+        </View>
       </View>
-    </View>
+    </>
+
   )
 }
 

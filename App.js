@@ -6,11 +6,9 @@ import { useEffect } from 'react';
 
 
 import AsyncStorage from '@react-native-async-storage/async-storage'; 
-
-import { Header } from './components/General/Header';
 import { HomeScreen } from './components/Home';
 import { RouletteScreen } from './components/Roulette';
-import jsonData from './jsonData';
+import jsonData from './components/utils/jsonData';
 import { useFonts } from 'expo-font';
 
 const Stack = createNativeStackNavigator();
@@ -63,7 +61,6 @@ export default function App() {
             name="home" 
             component={HomeScreen}
             options={{headerShown: false, unmountOnBlur:true}}
-            // initialParams={{setNavBarShow, completeForm, setCompleteForm}}
             />
             <Stack.Screen 
             name="roulette" 

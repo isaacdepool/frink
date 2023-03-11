@@ -13,7 +13,10 @@ export const Buttons = ({
     bgcolor=s.bg_primary, 
     color=s.colorWhite,
     Icon,
-    idQuestions
+    idQuestions,
+    numberOfUsers,
+    refRBSheet,
+    showModal
 }) => {
 
     const navigation = useNavigation();
@@ -21,13 +24,17 @@ export const Buttons = ({
 
     const goToRoulette = () =>{
 
-        const dataCache = {
-            idQuestions: idQuestions,
-            bg_color: bgcolor,
-            title_color: color,
-            Icon: Icon
+        if(numberOfUsers < 2){
+            showModal.current.content.warningsFriends();
+        }else{
+            const dataCache = {
+                idQuestions: idQuestions,
+                bg_color: bgcolor,
+                title_color: color,
+                Icon: Icon
+            }
+            navigation.navigate(url, dataCache);
         }
-        navigation.navigate(url, dataCache);
     }
 
   return (

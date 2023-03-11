@@ -7,7 +7,7 @@ import ShotIcon from '../../assets/icons/shot.svg';
 
 var s = require('../../style');
 
-export const Home = () => {
+export const Home = ({numberOfUsers, refRBSheet, showModal}) => {
 
   return (
     <>
@@ -19,6 +19,9 @@ export const Home = () => {
             color={[s.Color_quarternary]}
             Icon={BeerIcon}
             idQuestions={1}
+            numberOfUsers={numberOfUsers}
+            refRBSheet={refRBSheet}
+            showModal={showModal}
             />
 
             <Buttons
@@ -28,6 +31,9 @@ export const Home = () => {
             color={[s.colorWhite]}
             Icon={MargaritaIcon}
             idQuestions={2}
+            numberOfUsers={numberOfUsers}
+            refRBSheet={refRBSheet}
+            showModal={showModal}
             />
 
             <Buttons
@@ -36,6 +42,9 @@ export const Home = () => {
             color={[s.colorRed]}
             Icon={ShotIcon}
             idQuestions={3}
+            numberOfUsers={numberOfUsers}
+            refRBSheet={refRBSheet}
+            showModal={showModal}
             />
         </View>
     </>
