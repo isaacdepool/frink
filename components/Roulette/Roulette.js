@@ -10,7 +10,15 @@ import BackIcon from '../../assets/icons/Icon back - blanco.svg';
 
 var s = require('../../style');
 
-export const Roulette = ({dataQuestions, dataUsers=[]}) => {
+export const Roulette = ({
+  dataQuestions, 
+  dataUsers=[],
+  Icon,
+  bg_color,
+  title_color
+}) => {
+
+  // console.log(Icon);
 
   const navigation = useNavigation();
 
@@ -61,7 +69,7 @@ export const Roulette = ({dataQuestions, dataUsers=[]}) => {
           <BackIcon width={25} height={25}/>
         </TouchableOpacity>
 
-        <Text style={[s.textCenter, s.fontSize40, s.Color_quarternary,s.fontFamily1, s.mx3, {marginTop: 0}]}>{dataQuestions.title}</Text>
+        <Text style={[s.textCenter, s.fontSize40, title_color,s.fontFamily1, s.mx3, {marginTop: 0}, styles.text]}>{dataQuestions.title}</Text>
         {
           !isFirstRef.current &&
           <>
@@ -88,7 +96,7 @@ export const Roulette = ({dataQuestions, dataUsers=[]}) => {
             </View>
           </View>
 
-        <BeerIcon
+        <Icon
         width= '45%'
         height='45%'
         style={[styles.icon]}
@@ -99,6 +107,9 @@ export const Roulette = ({dataQuestions, dataUsers=[]}) => {
 }
 
 const styles = StyleSheet.create({
+  text:{letterSpacing: 4, textShadowColor:'#000', 
+    textShadowOffset:{width: 5, height: 5},
+    textShadowRadius:10},
   question:{
     letterSpacing: 3, 
     textShadowColor:'#000', 

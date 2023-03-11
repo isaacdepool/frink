@@ -9,17 +9,31 @@ var s = require('../../../style');
 
 export const Buttons = ({
     title='Hola', 
-    url, bgcolor=s.bg_primary, 
+    url, 
+    bgcolor=s.bg_primary, 
     color=s.colorWhite,
-    Icon
+    Icon,
+    idQuestions
 }) => {
 
     const navigation = useNavigation();
     const [touchIn, setTouchIn, touchInRef] = useStateRef(false);
+
+    const goToRoulette = () =>{
+
+        const dataCache = {
+            idQuestions: idQuestions,
+            bg_color: bgcolor,
+            title_color: color,
+            Icon: Icon
+        }
+        navigation.navigate(url, dataCache);
+    }
+
   return (
     <>
         <TouchableOpacity style={[styles.box, bgcolor, s.mx3, s.my1, s.contenedorCenter, touchInRef.current&& styles.btn_hover]}
-        onPress={() => navigation.navigate(url)}
+        onPress={goToRoulette}
         onPressIn={() => setTouchIn(!touchInRef.current)}
         onPressOut={() => setTouchIn(!touchInRef.current)}
         >

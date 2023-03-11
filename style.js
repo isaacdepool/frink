@@ -82,7 +82,7 @@ module.exports = StyleSheet.create({
       color: "#d7e9dd", 
     },
     colorRed: {
-     color: "#F56A6D",
+     color: "#DF2E38",
     },
     colorYellow: {
      color: "#F0B404",
