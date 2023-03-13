@@ -11,3 +11,9 @@ App created with react native
 
 # Add Friends
 ![photo_4936072847072275962_y](https://user-images.githubusercontent.com/41870089/224846510-821f83b1-32a8-4f56-b992-0fe9c2748a8e.jpg)
+
+### Install modules
+`npm install`
+
+### Init project 
+`npx expo start`
