@@ -41,7 +41,7 @@ export const AddUsers = ({setnumberOfUsers, showModal,setGoTo}) => {
             return
         }
 
-        if(listRef.current.filter(e => e.name.toLowerCase() == nameRef.current.toLowerCase()).length > 0){
+        if(listRef.current.filter(e => e.name.toLowerCase().trim() == nameRef.current.toLowerCase().trim()).length > 0){
             showModal.current.content.errorName();
             setGoTo(2);
             return
@@ -74,18 +74,18 @@ export const AddUsers = ({setnumberOfUsers, showModal,setGoTo}) => {
         AsyncStorage.removeItem('users')
             .then( _ =>{
                 setList([]);
+                setnumberOfUsers(0);
         }).catch(err => console.log('Error to delet users', err));
     }
 
     // Delete only user selected 
-    const hadleDelete = (id) =>{
+    const hadleDelete = (name) =>{
 
-        let listCopy = [...listRef.current]
-        const index = listCopy.findIndex(item => item.id == id);
+        let listCopy = [...listRef.current];
+        const index = listCopy.findIndex(item => item.name.toLowerCase() == name.toLowerCase());
         if (index > -1) {
             listCopy.splice(index, 1);
         } 
-
         setList(listCopy);
         saveUsers();
     }
@@ -149,7 +149,7 @@ export const AddUsers = ({setnumberOfUsers, showModal,setGoTo}) => {
                                 </View>
 
                                 <TouchableOpacity style={[s.p2]}
-                                onPress={() => hadleDelete(item.id)}
+                                onPress={() => hadleDelete(item.name)}
                                 >
                                     <DeleteIcon width={20} height={20} />
                                 </TouchableOpacity>

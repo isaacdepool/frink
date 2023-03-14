@@ -10,6 +10,7 @@ import { HomeScreen } from './components/Home';
 import { RouletteScreen } from './components/Roulette';
 import jsonData from './components/utils/jsonData';
 import { useFonts } from 'expo-font';
+import * as SplashScreen from 'expo-splash-screen';
 
 const Stack = createNativeStackNavigator();
 const customFonts = {
@@ -48,12 +49,25 @@ export default function App() {
       }  
     });
   }, []); //Get Questions
-  
+
+  useEffect(() => {
+    const prepare = async () => {
+      // keep splash screen visible
+      await SplashScreen.preventAutoHideAsync()
+      // pre-load your stuff
+      await new Promise(resolve => setTimeout(resolve, 3000))
+
+      // hide splash screen
+      await SplashScreen.hideAsync()
+    }
+    prepare();
+  }, [])
+
   const [isLoaded] = useFonts(customFonts);
 
-    if (!isLoaded) {
-      return;
-    }
+  if (!isLoaded) {
+    return;
+  }
 
   return (
     <>
